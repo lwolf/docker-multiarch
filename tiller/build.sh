@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# declare -A targets=( ["amd64"]="amd64" ["arm64"]="arm64v8" ["arm"]="arm32v6" )
 set -euo pipefail
 
 export GITHUB_REPO=helm/helm
@@ -24,11 +23,41 @@ docker manifest create --amend \
     lwolf/helm:${VERSION}-arm64 \
     lwolf/helm:${VERSION}-arm
 
+docker manifest annotate \
+    lwolf/helm:latest \
+    lwolf/helm:${VERSION}-amd64 \
+    --os linux --arch amd64
+
+docker manifest annotate \
+    lwolf/helm:latest \
+    lwolf/helm:${VERSION}-arm64 \
+    --os linux --arch arm64
+
+docker manifest annotate \
+    lwolf/helm:latest \
+    lwolf/helm:${VERSION}-arm \
+    --os linux --arch arm
+
 docker manifest create --amend \
     lwolf/helm:latest \
     lwolf/helm:${VERSION}-amd64 \
     lwolf/helm:${VERSION}-arm64 \
     lwolf/helm:${VERSION}-arm
+
+docker manifest annotate \
+    lwolf/helm:${VERSION} \
+    lwolf/helm:${VERSION}-amd64 \
+    --os linux --arch amd64
+
+docker manifest annotate \
+    lwolf/helm:${VERSION} \
+    lwolf/helm:${VERSION}-arm64 \
+    --os linux --arch arm64
+
+docker manifest annotate \
+    lwolf/helm:${VERSION} \
+    lwolf/helm:${VERSION}-arm \
+    --os linux --arch arm
 
 docker manifest push lwolf/helm:${VERSION}
 docker manifest push lwolf/helm:latest
