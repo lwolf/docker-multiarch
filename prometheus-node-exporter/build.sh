@@ -50,12 +50,12 @@ done
 docker manifest annotate \
     ${DOCKER_REPO}:${VERSION} \
     ${DOCKER_REPO}:${VERSION}-armv6 \
-    --os linux --arch arm
+    --os linux --arch arm --variant v6
 
 docker manifest annotate \
     ${DOCKER_REPO}:latest \
     ${DOCKER_REPO}:${VERSION}-armv6 \
-    --os linux --arch arm
+    --os linux --arch arm --variant v6
 
 docker manifest push ${DOCKER_REPO}:${VERSION}
 docker manifest push ${DOCKER_REPO}:latest
