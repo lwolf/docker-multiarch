@@ -5,7 +5,7 @@ set -euo pipefail
 export GITHUB_REPO=prometheus/node_exporter
 export VERSION=$(curl -s https://api.github.com/repos/${GITHUB_REPO}/releases/latest | jq -r ".tag_name")
 export CLEAN_VERSION=${VERSION#*v}
-export DOCKER_REPO=lwolf/node_exporter
+export DOCKER_REPO=lwolf/node-exporter
 
 mkdir -p /tmp/release
 for ARCH_TARGETS in amd64_amd64 arm64_arm64v8 armv6_arm32v6
