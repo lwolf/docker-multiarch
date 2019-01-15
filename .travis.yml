@@ -1,6 +1,6 @@
-language: python
-python:
-  - "3.6"
+sudo: 'required'
+
+language: 'generic'
 
 # needed for the docker pipe
 services:
@@ -16,14 +16,10 @@ before_install:
 matrix:
   include:
     - name: "flannel"
-      python: "3.6"
-      script: bash ./flannel/build.sh
+      script: cd flannel && bash ./build.sh
     - name: "kubernetes-dashboard"
-      python: "3.6"
-      script: bash ./kubernetes-dashboard/build.sh
+      script: cd kubernetes-dashboard && bash ./build.sh
     - name: "prometheus-node-exporter"
-      python: "3.6"
-      script: bash ./prometheus-node-exporter/build.sh
+      script: cd prometheus-node-exporter && bash ./build.sh
     - name: "tiller"
-      python: "3.6"
-      script: bash ./tiller/build.sh
+      script: cd tiller && bash ./build.sh
