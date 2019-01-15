@@ -16,7 +16,7 @@ before_install:
 matrix:
   include:
     - name: "test"
-      script: 'docker version'
+      script: 'cat ~/.docker/config.json'
     - name: "flannel"
       script: cd flannel && bash ./build.sh
     - name: "kubernetes-dashboard"
