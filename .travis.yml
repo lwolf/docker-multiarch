@@ -6,6 +6,9 @@ language: 'generic'
 services:
 - docker
 
+apt:
+  - jq
+
 env:
   - DOCKER_CLI_EXPERIMENTAL=enabled
 
