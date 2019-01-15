@@ -10,20 +10,19 @@ git:
   depth: 1
 
 before_install:
-  - bash --version
-  - docker login -u '${DOCKER_LOGIN}' -p '${DOCKER_PASSWORD}'
+  - echo "$DOCKER_PASSWORD" | docker login -u "DOCKER_LOGIN" --password-stdin
 
 matrix:
   include:
     - name: "flannel"
       python: "3.6"
-      script: ./flannel/build.sh
+      script: bash ./flannel/build.sh
     - name: "kubernetes-dashboard"
       python: "3.6"
-      script: ./kubernetes-dashboard/build.sh
+      script: bash ./kubernetes-dashboard/build.sh
     - name: "prometheus-node-exporter"
       python: "3.6"
-      script: ./prometheus-node-exporter/build.sh
+      script: bash ./prometheus-node-exporter/build.sh
     - name: "tiller"
       python: "3.6"
-      script: ./tiller/build.sh
+      script: bash ./tiller/build.sh
