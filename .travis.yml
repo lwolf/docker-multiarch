@@ -1,13 +1,17 @@
 language: python
 python:
   - "3.6"
+
 # needed for the docker pipe
 services:
 - docker
 
+git:
+  depth: 1
+
 before_install:
   - bash --version
-  - docker login -u ${DOCKER_LOGIN} -p ${DOCKER_PASSWORD}
+  - docker login -u '${DOCKER_LOGIN}' -p '${DOCKER_PASSWORD}'
 
 matrix:
   include:
