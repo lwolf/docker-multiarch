@@ -3,7 +3,8 @@
 set -euo pipefail
 
 export GITHUB_REPO=prometheus/node_exporter
-export VERSION=$(curl -s https://api.github.com/repos/${GITHUB_REPO}/releases/latest | jq -r ".tag_name")
+# export VERSION=$(curl -s https://api.github.com/repos/${GITHUB_REPO}/releases/latest | jq -r ".tag_name")
+export VERSION=v0.17.0
 export CLEAN_VERSION=${VERSION#*v}
 export DOCKER_REPO=lwolf/node-exporter
 
