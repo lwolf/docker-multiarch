@@ -31,7 +31,7 @@ setup_dependencies() {
   "
 
   sudo apt update -y
-  sudo apt install -y jq
+  sudo apt install -y jq curl
   sudo apt install --only-upgrade docker-ce -y
 
   docker info
