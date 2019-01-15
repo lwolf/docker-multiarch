@@ -6,6 +6,9 @@ language: 'generic'
 services:
 - docker
 
+env:
+  - DOCKER_CLI_EXPERIMENTAL=enabled
+
 git:
   depth: 1
 
