@@ -1,0 +1,23 @@
+language: python
+
+# needed for the docker pipe
+services:
+- docker
+
+before_install:
+  - docker login -u ${DOCKER_LOGIN} -p ${DOCKER_PASSWORD}
+
+matrix:
+  include:
+    - name: "flannel"
+      python: "3.7"
+      script: ./flannel/build.sh
+    - name: "kubernetes-dashboard"
+      python: "3.7"
+      script: ./kubernetes-dashboard/build.sh
+    - name: "prometheus-node-exporter"
+      python: "3.7"
+      script: ./prometheus-node-exporter/build.sh
+    - name: "tiller"
+      python: "3.7"
+      script: ./tiller/build.sh
