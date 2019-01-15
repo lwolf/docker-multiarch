@@ -10,7 +10,7 @@ git:
   depth: 1
 
 before_install:
-  - echo "$DOCKER_PASSWORD" | docker login -u "DOCKER_LOGIN" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 matrix:
   include:
