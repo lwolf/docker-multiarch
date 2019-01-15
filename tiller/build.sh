@@ -6,6 +6,10 @@ export GITHUB_REPO=helm/helm
 export VERSION=$(curl -s https://api.github.com/repos/${GITHUB_REPO}/releases/latest | jq -r ".tag_name")
 export DOCKER_REPO=lwolf/helm
 
+echo $GITHUB_REPO
+echo $VERSION
+echo $DOCKER_REPO
+
 mkdir -p /tmp/release
 for ARCH_TARGETS in amd64_amd64 arm64_arm64v8 arm_arm32v6
 do
