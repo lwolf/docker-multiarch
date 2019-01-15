@@ -6,6 +6,8 @@ export GITHUB_REPO=helm/helm
 export VERSION=$(curl -s https://api.github.com/repos/${GITHUB_REPO}/releases/latest | jq -r ".tag_name")
 export DOCKER_REPO=lwolf/helm
 
+curl -s https://api.github.com/repos/${GITHUB_REPO}/releases/latest
+curl -s https://api.github.com/repos/${GITHUB_REPO}/releases/latest | jq -r ".tag_name"
 echo $VERSION
 
 mkdir -p /tmp/release
