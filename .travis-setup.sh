@@ -31,9 +31,7 @@ setup_dependencies() {
   "
 
   sudo apt update -y
-  sudo apt install -y jq curl
-  sudo apt install -y --no-install-recommends binfmt-support qemu-user-static
-  sudo apt install --only-upgrade docker-ce -y
+  sudo apt install --only-upgrade jq curl docker-ce -y
 
   docker info
 }
