@@ -28,4 +28,5 @@ matrix:
 #    - name: "prometheus-node-exporter"
 #      script: cd prometheus-node-exporter && bash ./build.sh
     - name: "tiller"
+      os: mac
       script: cd tiller && bash ./build.sh
