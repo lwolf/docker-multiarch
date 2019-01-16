@@ -8,25 +8,12 @@ export VERSION=v2.12.2
 export DOCKER_REPO=lwolf/helm
 
 mkdir -p /tmp/release
-for ARCH_TARGETS in amd64_amd64 arm64_arm64v8 arm_arm32v6
+
+for ARCH in amd64 arm64 arm
 do
-    TARGET=${ARCH_TARGETS#*_}  # will drop begin of string up to first occur of `SubStr`
-    ARCH=${ARCH_TARGETS%%_*} # will drop part of string from first occur of `SubStr` to the end
     wget -O- https://storage.googleapis.com/kubernetes-helm/helm-${VERSION}-linux-${ARCH}.tar.gz | tar xvz
     cp linux-${ARCH}/{tiller,helm} .
-
-    if [ "$ARCH" -eq "amd64" ];then
-       QEMU="x86_64"
-    elif [ "$ARCH" -eq "arm" ]; then
-       QEMU=$ARCH
-    elif [ "$ARCH" -eq "arm64" ]; then
-       QEMU="aarch64"
-    else
-        echo "unknown architecture type"
-        return 1
-    fi
-
-    docker build -t ${DOCKER_REPO}:${VERSION}-${ARCH} --build-arg target=${TARGET} qemu=${QEMU} .
+    docker build -t ${DOCKER_REPO}:${VERSION}-${ARCH} -f Dockerfile.${ARCH} .
     docker push ${DOCKER_REPO}:${VERSION}-${ARCH}
     rm -Rf {tiller,helm} linux-${ARCH}
 done

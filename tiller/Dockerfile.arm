@@ -1,14 +1,11 @@
-ARG target
-ARG qemu
-
-FROM $target/alpine:3.8
+FROM armv6/alpine:3.8
 
 # Metadata
 LABEL org.label-schema.name="helm" \
       org.label-schema.url="https://hub.docker.com/r/lwolf/helm" \
       org.label-schema.vcs-url="https://github.com/lwolf/docker-multiarch"
 
-COPY /usr/bin/qemu-$qemu-static /usr/bin/
+COPY /usr/bin/qemu-arm-static /usr/bin/
 
 RUN apk update && apk add ca-certificates socat && rm -rf /var/cache/apk/*
 
