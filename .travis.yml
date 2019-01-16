@@ -11,6 +11,11 @@ services:
 env:
   - DOCKER_CLI_EXPERIMENTAL=enabled
 
+#script:
+## prepare qemu
+#- docker run --rm --privileged multiarch/qemu-user-static:register --reset
+#- sudo apt-get --yes
+#
 git:
   depth: 1
 
@@ -28,9 +33,3 @@ matrix:
       script: cd prometheus-node-exporter && bash ./build.sh
     - name: "tiller"
       script: cd tiller && bash ./build.sh
-    - name: "tiller-test-arm"
-      os: linux
-      dist: trusty
-      env:
-        - ARCH="armv8"
-      script: cd tiller && bash ./build-arm.sh
