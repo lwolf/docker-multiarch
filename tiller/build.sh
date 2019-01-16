@@ -11,7 +11,7 @@ for ARCH in amd64 arm64 arm
 do
     wget -O- https://storage.googleapis.com/kubernetes-helm/helm-${VERSION}-linux-${ARCH}.tar.gz | tar xvz
     cp linux-${ARCH}/{tiller,helm} .
-    docker build -t ${DOCKER_REPO}:${VERSION}-${ARCH} -f tiller/Dockerfile.${ARCH} .
+    docker build -t ${DOCKER_REPO}:${VERSION}-${ARCH} -f Dockerfile.${ARCH} .
     docker push ${DOCKER_REPO}:${VERSION}-${ARCH}
     rm -Rf {tiller,helm} linux-${ARCH}
 done
