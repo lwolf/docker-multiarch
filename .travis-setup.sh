@@ -32,7 +32,7 @@ setup_dependencies() {
   "
 
   sudo apt update -y
-  sudo apt install --only-upgrade jq curl docker-ce -y
+  sudo apt install --only-upgrade jq curl docker-ce wget tar -y
 
   docker info
 }
@@ -58,7 +58,7 @@ update_docker_configuration() {
 setup_qemu() {
 for target_arch in aarch64 arm x86_64; do
   wget -N https://github.com/multiarch/qemu-user-static/releases/download/v2.9.1-1/x86_64_qemu-${target_arch}-static.tar.gz
-  tar -xvf x86_64_qemu-${target_arch}-static.tar.gz -C /usr/bin
+  sudo tar -xvf x86_64_qemu-${target_arch}-static.tar.gz -C /usr/bin
 done
 }
 
