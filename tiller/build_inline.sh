@@ -11,7 +11,7 @@ for ARCH in amd64 arm64 arm
 do
     if [ "$ARCH" == "amd64" ];then
         export TARGET=amd64
-        export QEMU_ARCH=amd64
+        export QEMU_ARCH=x86_64
         export ARCH=amd64
     elif [ "$ARCH" == "arm" ]; then
         export TARGET=armv6
