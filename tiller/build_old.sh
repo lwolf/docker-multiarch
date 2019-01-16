@@ -7,9 +7,15 @@ export GITHUB_REPO=helm/helm
 export VERSION=v2.12.2
 export DOCKER_REPO=lwolf/helm
 
-bash build.arm.sh
-bash build.arm64.sh
-bash build.amd64.sh
+for ARCH in amd64 arm64 arm
+do
+    wget -O- https://storage.googleapis.com/kubernetes-helm/helm-${VERSION}-linux-${ARCH}.tar.gz | tar xvz
+    cp linux-${ARCH}/{tiller,helm} .
+    cp ../bin/qemu* .
+    docker build -t ${DOCKER_REPO}:${VERSION}-${ARCH} -f Dockerfile.${ARCH} .
+    docker push ${DOCKER_REPO}:${VERSION}-${ARCH}
+    rm -Rf {tiller,helm} linux-${ARCH} qemu*
+done
 
 docker manifest create --amend \
     ${DOCKER_REPO}:${VERSION} \
