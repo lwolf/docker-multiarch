@@ -34,7 +34,7 @@ do
     cp linux-${ARCH}/{tiller,helm} .
 
     # Build image
-    docker build -t ${DOCKER_REPO}:${VERSION}-${ARCH} --build-arg target=${TARGET} --build-arg=${QEMU_ARCH} .
+    docker build -t ${DOCKER_REPO}:${VERSION}-${ARCH} --build-arg target=${TARGET} --build-arg qemu_arch=${QEMU_ARCH} .
 
     # Push image
     docker push ${DOCKER_REPO}:${VERSION}-${ARCH}
