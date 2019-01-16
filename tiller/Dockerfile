@@ -7,8 +7,10 @@ LABEL org.label-schema.name="helm" \
       org.label-schema.url="https://hub.docker.com/r/lwolf/helm" \
       org.label-schema.vcs-url="https://github.com/lwolf/docker-multiarch"
 
-RUN apk update && apk add ca-certificates socat
-#RUN apk update && apk add ca-certificates socat && rm -rf /var/cache/apk/*
+RUN apk update
+RUN apk add ca-certificates
+RUN apk add socat
+RUN rm -rf /var/cache/apk/*
 
 ENV HOME /tmp
 

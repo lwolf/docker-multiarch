@@ -16,16 +16,16 @@ git:
 
 before_install:
   - bash ./.travis-setup.sh
-  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+#  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 matrix:
   include:
-    - name: "flannel"
-      script: cd flannel && bash ./build.sh
-    - name: "kubernetes-dashboard"
-      script: cd kubernetes-dashboard && bash ./build.sh
-    - name: "prometheus-node-exporter"
-      script: cd prometheus-node-exporter && bash ./build.sh
+#    - name: "flannel"
+#      script: cd flannel && bash ./build.sh
+#    - name: "kubernetes-dashboard"
+#      script: cd kubernetes-dashboard && bash ./build.sh
+#    - name: "prometheus-node-exporter"
+#      script: cd prometheus-node-exporter && bash ./build.sh
     - name: "tiller"
       script: cd tiller && bash ./build.sh
