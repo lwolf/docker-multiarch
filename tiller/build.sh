@@ -25,8 +25,8 @@ docker manifest create --amend \
 
 for OS_ARCH in linux_amd64 linux_arm linux_arm64
 do
-    OS=${ARCH_TARGETS#*_}
-    ARCH=${ARCH_TARGETS%%_*}
+    OS=${OS_ARCH#*_}
+    ARCH=${OS_ARCH%%_*}
 
     docker manifest annotate \
         ${DOCKER_REPO}:${VERSION} \
