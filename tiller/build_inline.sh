@@ -39,7 +39,7 @@ do
     # Push image
     docker push ${DOCKER_REPO}:${VERSION}-${ARCH}
 
-    rm -Rf {node_exporter} node_exporter-${CLEAN_VERSION}.linux-${ARCH}
+    rm -Rf {tiller,helm} linux-${ARCH} qemu*
 
 done
 
