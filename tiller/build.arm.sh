@@ -4,7 +4,7 @@ set -euo pipefail
 
 export QEMU_VERSION=v3.1.0-2
 export export GITHUB_REPO=helm/helm
-export TARGET=armv6
+export TARGET=arm32v6
 export QEMU_ARCH=arm
 export ARCH=arm
 export VERSION=v2.12.2
