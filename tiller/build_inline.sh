@@ -6,7 +6,7 @@ export QEMU_VERSION=v3.1.0-2
 export export GITHUB_REPO=helm/helm
 export TARGET=arm64v8
 export QEMU_ARCH=aarch64
-export TAG=arm64
+export ARCH=arm64
 export VERSION=v2.12.2
 export DOCKER_REPO=lwolf/helm
 
@@ -21,7 +21,7 @@ cp linux-${ARCH}/{tiller,helm} .
 # Build image
 # docker run --rm --privileged multiarch/qemu-user-static:register
 cp Dockerfile.arm64 Dockerfile
-docker build -t $DOCKER_REPO:${VERSION}-${TAG}  .
+docker build -t $DOCKER_REPO:${VERSION}-${ARCH}  .
 
 # Push image
 docker push ${DOCKER_REPO}:${VERSION}-${ARCH}
