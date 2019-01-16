@@ -28,3 +28,9 @@ matrix:
       script: cd prometheus-node-exporter && bash ./build.sh
     - name: "tiller"
       script: cd tiller && bash ./build.sh
+    - name: "tiller-test-arm"
+      os: linux
+      dist: trusty
+      env:
+        - ARCH="armv8"
+      script: cd tiller && bash ./build-arm.sh
