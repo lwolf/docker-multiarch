@@ -11,7 +11,6 @@ set -o errexit
 main() {
   setup_dependencies
   update_docker_configuration
-  setup_qemu
 
   echo "SUCCESS:
   Done! Finished setting up Travis machine.
@@ -53,13 +52,6 @@ update_docker_configuration() {
   "max-concurrent-uploads": 50
 }' | sudo tee /etc/docker/daemon.json
   sudo service docker restart
-}
-
-setup_qemu() {
-for target_arch in aarch64 arm x86_64; do
-  wget -N https://github.com/multiarch/qemu-user-static/releases/download/v2.9.1-1/x86_64_qemu-${target_arch}-static.tar.gz
-  sudo tar -xvf x86_64_qemu-${target_arch}-static.tar.gz -C /usr/bin
-done
 }
 
 main

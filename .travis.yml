@@ -15,7 +15,7 @@ git:
   depth: 1
 
 before_install:
-#  - bash ./.travis-setup.sh
+  - bash ./.travis-setup.sh
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
