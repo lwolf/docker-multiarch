@@ -29,5 +29,9 @@ matrix:
 #      script: cd prometheus-node-exporter && bash ./build.sh
 #    - name: "tiller"
 #      script: cd tiller && bash ./build.sh
-    - name: "tiller"
-      script: cd tiller && bash ./build_inline.sh
+    - name: "tiller-amd64"
+      script: cd tiller && bash ./build.amd64.sh
+    - name: "tiller-arm64"
+      script: cd tiller && bash ./build.arm64.sh
+    - name: "tiller-arm"
+      script: cd tiller && bash ./build.arm.sh
