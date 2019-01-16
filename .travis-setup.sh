@@ -11,6 +11,7 @@ set -o errexit
 main() {
   setup_dependencies
   update_docker_configuration
+  setup_qemu
 
   echo "SUCCESS:
   Done! Finished setting up Travis machine.
