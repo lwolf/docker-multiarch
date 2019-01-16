@@ -21,12 +21,11 @@ before_install:
 
 matrix:
   include:
-#    - name: "flannel"
-#      script: cd flannel && bash ./build.sh
-#    - name: "kubernetes-dashboard"
-#      script: cd kubernetes-dashboard && bash ./build.sh
-#    - name: "prometheus-node-exporter"
-#      script: cd prometheus-node-exporter && bash ./build.sh
+    - name: "flannel"
+      script: cd flannel && bash ./build.sh
+    - name: "kubernetes-dashboard"
+      script: cd kubernetes-dashboard && bash ./build.sh
+    - name: "prometheus-node-exporter"
+      script: cd prometheus-node-exporter && bash ./build.sh
     - name: "tiller"
-      os: mac
       script: cd tiller && bash ./build.sh
