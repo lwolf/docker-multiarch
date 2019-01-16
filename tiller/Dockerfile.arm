@@ -1,4 +1,4 @@
-FROM armv6/alpine:3.8
+FROM arm32v6/alpine:3.8
 
 # Metadata
 LABEL org.label-schema.name="helm" \
