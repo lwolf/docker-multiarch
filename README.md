@@ -7,7 +7,7 @@ Currently all images are compatible with the following architectures:
 
 * amd64
 * arm64
-* arm7 
+* arm6
 
 Images are built compliant with v2.2 of the Docker manifest API. No need to specify separate images for different architectures (particularly annoying if you have an architecturally heterogeneous cluster); the Docker client infers for you which image to pull.
 
@@ -19,4 +19,5 @@ Current content
 | flannel  | [lwolf/flannel](https://hub.docker.com/r/lwolf/flannel)  |
 | kubernetes-dashboard  | [lwolf/kubernetes-dashboard](https://hub.docker.com/r/lwolf/kubernetes-dashboard)  |
 | prometheus-node-exporter  | [lwolf/node-exporter](https://hub.docker.com/r/lwolf/node-exporter)  |
+| prometheus-snmp-exporter  | [lwolf/snmp-exporter](https://hub.docker.com/r/lwolf/snmp-exporter)  |
 | tiller   | [lwolf/helm](https://hub.docker.com/r/lwolf/helm) |
