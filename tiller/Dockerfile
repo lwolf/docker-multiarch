@@ -11,11 +11,10 @@ LABEL org.label-schema.name="helm" \
 
 COPY qemu-$qemu_arch-static /usr/bin/
 
-RUN apk update
-RUN apk add ca-certificates socat
-RUN rm -rf /var/cache/apk/*
-
-RUN rm -Rf /usr/bin/qemu-$qemu_arch-static
+RUN apk update \
+    && apk add ca-certificates socat \
+    && rm -rf /var/cache/apk/* \
+    && rm -Rf /usr/bin/qemu-$qemu_arch-static
 
 ENV HOME /tmp
 

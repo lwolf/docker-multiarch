@@ -29,5 +29,7 @@ matrix:
       script: cd kubernetes-dashboard && bash ./build.sh
     - name: "prometheus-node-exporter"
       script: cd prometheus-node-exporter && bash ./build.sh
+    - name: "snmp-exporter"
+      script: cd snmp-exporter && bash ./build.sh
     - name: "tiller"
       script: cd tiller && bash ./build.sh

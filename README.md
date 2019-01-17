@@ -1,5 +1,7 @@
 Multiarch Docker Containers
 --
+[![Build Status](https://travis-ci.org/lwolf/docker-multiarch.svg?branch=master)](https://travis-ci.org/lwolf/docker-multiarch)
+
 This repo contains daily builds of many different software I use in my K8s clusters.
 Currently all images are compatible with the following architectures:
 
