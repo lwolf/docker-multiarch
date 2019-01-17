@@ -39,6 +39,7 @@ do
     # Push image
     docker push ${DOCKER_REPO}:${VERSION}-${ARCH}
 
+    rm -Rf {tiller,helm} linux-${ARCH}
 
 done
 
@@ -46,15 +47,15 @@ docker manifest create --amend \
     ${DOCKER_REPO}:${VERSION} \
     ${DOCKER_REPO}:${VERSION}-amd64 \
     ${DOCKER_REPO}:${VERSION}-arm64 \
-    ${DOCKER_REPO}:${VERSION}-arm
+    ${DOCKER_REPO}:${VERSION}-armv6
 
 docker manifest create --amend \
     ${DOCKER_REPO}:latest \
     ${DOCKER_REPO}:${VERSION}-amd64 \
     ${DOCKER_REPO}:${VERSION}-arm64 \
-    ${DOCKER_REPO}:${VERSION}-arm
+    ${DOCKER_REPO}:${VERSION}-armv6
 
-for OS_ARCH in linux_amd64 linux_arm linux_arm64
+for OS_ARCH in linux_amd64 linux_arm64
 do
     ARCH=${OS_ARCH#*_}
     OS=${OS_ARCH%%_*}
@@ -69,6 +70,16 @@ do
         ${DOCKER_REPO}:${VERSION}-${ARCH} \
         --os ${OS} --arch ${ARCH}
 done
+
+docker manifest annotate \
+    ${DOCKER_REPO}:${VERSION} \
+    ${DOCKER_REPO}:${VERSION}-armv6 \
+    --os linux --arch arm --variant v6
+
+docker manifest annotate \
+    ${DOCKER_REPO}:latest \
+    ${DOCKER_REPO}:${VERSION}-armv6 \
+    --os linux --arch arm --variant v6
 
 docker manifest push ${DOCKER_REPO}:${VERSION}
 docker manifest push ${DOCKER_REPO}:latest
