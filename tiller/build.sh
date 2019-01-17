@@ -8,17 +8,17 @@ export GITHUB_REPO=helm/helm
 export VERSION=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/${GITHUB_REPO}/releases/latest | cut -d '/' -f 8)
 export DOCKER_REPO=lwolf/helm
 
-for ARCH in amd64 arm64 arm
+for ARCH_TYPE in amd64 arm64 arm
 do
-    if [ "$ARCH" == "amd64" ];then
+    if [ "$ARCH_TYPE" == "amd64" ];then
         export TARGET=amd64
         export QEMU_ARCH=x86_64
         export ARCH=amd64
-    elif [ "$ARCH" == "arm" ]; then
+    elif [ "$ARCH_TYPE" == "arm" ]; then
         export TARGET=arm32v6
         export QEMU_ARCH=arm
         export ARCH=arm
-    elif [ "$ARCH" == "arm64" ]; then
+    elif [ "$ARCH_TYPE" == "arm64" ]; then
         export TARGET=arm64v8
         export QEMU_ARCH=aarch64
         export ARCH=arm64
@@ -47,13 +47,13 @@ docker manifest create --amend \
     ${DOCKER_REPO}:${VERSION} \
     ${DOCKER_REPO}:${VERSION}-amd64 \
     ${DOCKER_REPO}:${VERSION}-arm64 \
-    ${DOCKER_REPO}:${VERSION}-armv6
+    ${DOCKER_REPO}:${VERSION}
 
 docker manifest create --amend \
     ${DOCKER_REPO}:latest \
     ${DOCKER_REPO}:${VERSION}-amd64 \
     ${DOCKER_REPO}:${VERSION}-arm64 \
-    ${DOCKER_REPO}:${VERSION}-armv6
+    ${DOCKER_REPO}:${VERSION}
 
 for OS_ARCH in linux_amd64 linux_arm64
 do
@@ -73,12 +73,12 @@ done
 
 docker manifest annotate \
     ${DOCKER_REPO}:${VERSION} \
-    ${DOCKER_REPO}:${VERSION}-armv6 \
+    ${DOCKER_REPO}:${VERSION}-arm \
     --os linux --arch arm --variant v6
 
 docker manifest annotate \
     ${DOCKER_REPO}:latest \
-    ${DOCKER_REPO}:${VERSION}-armv6 \
+    ${DOCKER_REPO}:${VERSION}-arm \
     --os linux --arch arm --variant v6
 
 docker manifest push ${DOCKER_REPO}:${VERSION}
