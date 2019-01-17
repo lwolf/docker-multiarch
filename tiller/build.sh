@@ -47,13 +47,13 @@ docker manifest create --amend \
     ${DOCKER_REPO}:${VERSION} \
     ${DOCKER_REPO}:${VERSION}-amd64 \
     ${DOCKER_REPO}:${VERSION}-arm64 \
-    ${DOCKER_REPO}:${VERSION}
+    ${DOCKER_REPO}:${VERSION}-arm
 
 docker manifest create --amend \
     ${DOCKER_REPO}:latest \
     ${DOCKER_REPO}:${VERSION}-amd64 \
     ${DOCKER_REPO}:${VERSION}-arm64 \
-    ${DOCKER_REPO}:${VERSION}
+    ${DOCKER_REPO}:${VERSION}-arm
 
 for OS_ARCH in linux_amd64 linux_arm64
 do
