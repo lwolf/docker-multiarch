@@ -30,7 +30,7 @@ do
     curl -sL -o qemu-${QEMU_ARCH}-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/${QEMU_VERSION}/qemu-${QEMU_ARCH}-static.tar.gz && tar zx -f qemu-${QEMU_ARCH}-static.tar.gz
 
     wget -O- https://github.com/prometheus/prometheus/releases/download/${VERSION}/prometheus-${CLEAN_VERSION}.linux-${ARCH}.tar.gz | tar xvz
-    cp -R prometheus-${CLEAN_VERSION}.linux-${ARCH}/{prometheus,promtool,documentation,console_libraries,consoles} .
+    cp -R prometheus-${CLEAN_VERSION}.linux-${ARCH}/{prometheus,prometheus.yml,promtool,console_libraries,consoles} .
 
     # Build image
     docker build -t $DOCKER_REPO:${VERSION}-${ARCH}  --build-arg target=${TARGET} --build-arg qemu_arch=${QEMU_ARCH} .
@@ -38,7 +38,7 @@ do
     # Push image
     docker push ${DOCKER_REPO}:${VERSION}-${ARCH}
 
-    rm -Rf {prometheus,promtool,documentation,console_libraries,consoles} prometheus-${CLEAN_VERSION}.linux-${ARCH}
+    rm -Rf {prometheus,prometheus.yml,promtool,documentation,console_libraries,consoles} prometheus-${CLEAN_VERSION}.linux-${ARCH}
 done
 
 docker manifest create --amend \
