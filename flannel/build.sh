@@ -4,7 +4,8 @@ set -euo pipefail
 
 export GITHUB_REPO=coreos/flannel
 # export VERSION=$(curl -s https://api.github.com/repos/${GITHUB_REPO}/releases/latest | jq -r ".tag_name")
-export VERSION=v0.10.0
+# export VERSION=v0.10.0
+export VERSION=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/${GITHUB_REPO}/releases/latest | cut -d '/' -f 8)
 export DOCKER_REPO=lwolf/flannel
 
 for ARCH in amd64 arm64 arm

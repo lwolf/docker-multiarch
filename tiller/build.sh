@@ -2,10 +2,10 @@
 
 set -euo pipefail
 
-export QEMU_VERSION=v3.1.0-2
 export GITHUB_REPO=helm/helm
-export VERSION=$(curl -s https://api.github.com/repos/${GITHUB_REPO}/releases/latest | jq -r ".tag_name")
+# export VERSION=$(curl -s https://api.github.com/repos/${GITHUB_REPO}/releases/latest | jq -r ".tag_name")
 # export VERSION=v2.12.2
+export VERSION=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/${GITHUB_REPO}/releases/latest | cut -d '/' -f 8)
 export DOCKER_REPO=lwolf/helm
 
 for ARCH in amd64 arm64 arm
