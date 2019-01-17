@@ -20,8 +20,8 @@ cp linux-${ARCH}/{tiller,helm} .
 
 # Build image
 # docker run --rm --privileged multiarch/qemu-user-static:register
-cp Dockerfile.amd64 Dockerfile
-docker build -t $DOCKER_REPO:${VERSION}-${ARCH}  .
+# cp Dockerfile.amd64 Dockerfile
+docker build -t $DOCKER_REPO:${VERSION}-${ARCH}  --build-arg target=${TARGET} --build-arg qemu_arch=${QEMU_ARCH} .
 
 # Push image
 docker push ${DOCKER_REPO}:${VERSION}-${ARCH}
