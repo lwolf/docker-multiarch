@@ -1,0 +1,33 @@
+sudo: 'required'
+
+language: python
+python:
+  - "3.6"
+
+# needed for the docker pipe
+services:
+- docker
+
+env:
+  global:
+    - QEMU_VERSION=v3.1.0-2
+    - DOCKER_CLI_EXPERIMENTAL=enabled
+
+git:
+  depth: 1
+
+before_install:
+  - bash ./.travis-setup.sh
+  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+matrix:
+  include:
+    - name: "flannel"
+      script: cd flannel && bash ./build.sh
+    - name: "kubernetes-dashboard"
+      script: cd kubernetes-dashboard && bash ./build.sh
+    - name: "prometheus-node-exporter"
+      script: cd prometheus-node-exporter && bash ./build.sh
+    - name: "tiller"
+      script: cd tiller && bash ./build.sh

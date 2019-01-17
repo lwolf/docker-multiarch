@@ -3,7 +3,9 @@
 set -euo pipefail
 
 export GITHUB_REPO=kubernetes/dashboard
-export VERSION=$(curl -s https://api.github.com/repos/${GITHUB_REPO}/releases/latest | jq -r ".tag_name")
+# export VERSION=$(curl -s https://api.github.com/repos/${GITHUB_REPO}/releases/latest | jq -r ".tag_name")
+# export VERSION=v1.10.1
+export VERSION=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/${GITHUB_REPO}/releases/latest | cut -d '/' -f 8)
 export DOCKER_REPO=lwolf/kubernetes-dashboard
 
 for ARCH in amd64 arm64 arm
