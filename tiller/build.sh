@@ -3,10 +3,10 @@
 set -euo pipefail
 
 export GITHUB_REPO=helm/helm
-# export VERSION=$(curl -s https://api.github.com/repos/${GITHUB_REPO}/releases/latest | jq -r ".tag_name")
-# export VERSION=v2.12.2
 export VERSION=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/${GITHUB_REPO}/releases/latest | cut -d '/' -f 8)
 export DOCKER_REPO=lwolf/helm
+
+docker manifest inspect ${DOCKER_REPO}:${VERSION} > /dev/null && echo "Version ${VERSION} is already exists" && exit 0
 
 for ARCH_TYPE in amd64 arm64 arm
 do
