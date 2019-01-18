@@ -14,7 +14,6 @@ COPY qemu-$qemu_arch-static /usr/bin/
 RUN apk update \
     && apk add ca-certificates socat \
     && rm -rf /var/cache/apk/* \
-    && rm -Rf /usr/bin/qemu-$qemu_arch-static
 
 COPY prometheus                             /bin/prometheus
 COPY promtool                               /bin/promtool
@@ -25,7 +24,8 @@ COPY consoles/                              /usr/share/prometheus/consoles/
 RUN ln -s /usr/share/prometheus/console_libraries /usr/share/prometheus/consoles/ /etc/prometheus/ && \
     mkdir -p /prometheus && \
     chown -R nobody:nogroup etc/prometheus /prometheus && \
-    ln -s /prometheus /etc/prometheus/data
+    ln -s /prometheus /etc/prometheus/data && \
+    rm -Rf /usr/bin/qemu-$qemu_arch-static
 
 USER       nobody
 EXPOSE     9090
