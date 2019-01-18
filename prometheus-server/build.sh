@@ -2,10 +2,10 @@
 
 set -euo pipefail
 
-export GITHUB_REPO=prometheus/node_exporter
+export GITHUB_REPO=prometheus/prometheus
 export VERSION=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/${GITHUB_REPO}/releases/latest | cut -d '/' -f 8)
 export CLEAN_VERSION=${VERSION#*v}
-export DOCKER_REPO=lwolf/node-exporter
+export DOCKER_REPO=lwolf/prometheus
 
 docker manifest inspect ${DOCKER_REPO}:${VERSION} > /dev/null && echo "Version ${VERSION} is already exists" && exit 0
 
@@ -31,8 +31,8 @@ do
     # Get QEMU
     curl -sL -o qemu-${QEMU_ARCH}-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/${QEMU_VERSION}/qemu-${QEMU_ARCH}-static.tar.gz && tar zx -f qemu-${QEMU_ARCH}-static.tar.gz
 
-    wget -O- https://github.com/prometheus/node_exporter/releases/download/${VERSION}/node_exporter-${CLEAN_VERSION}.linux-${ARCH}.tar.gz | tar xvz
-    cp node_exporter-${CLEAN_VERSION}.linux-${ARCH}/node_exporter .
+    wget -O- https://github.com/prometheus/prometheus/releases/download/${VERSION}/prometheus-${CLEAN_VERSION}.linux-${ARCH}.tar.gz | tar xvz
+    cp -R prometheus-${CLEAN_VERSION}.linux-${ARCH}/{prometheus,prometheus.yml,promtool,console_libraries,consoles} .
 
     # Build image
     docker build -t $DOCKER_REPO:${VERSION}-${ARCH}  --build-arg target=${TARGET} --build-arg qemu_arch=${QEMU_ARCH} .
@@ -40,7 +40,7 @@ do
     # Push image
     docker push ${DOCKER_REPO}:${VERSION}-${ARCH}
 
-    rm -Rf {node_exporter} node_exporter-${CLEAN_VERSION}.linux-${ARCH}
+    rm -Rf {prometheus,prometheus.yml,promtool,documentation,console_libraries,consoles} prometheus-${CLEAN_VERSION}.linux-${ARCH}
 done
 
 docker manifest create --amend \

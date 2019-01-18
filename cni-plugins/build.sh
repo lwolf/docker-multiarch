@@ -2,10 +2,9 @@
 
 set -euo pipefail
 
-export GITHUB_REPO=prometheus/node_exporter
+export GITHUB_REPO=containernetworking/plugins
 export VERSION=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/${GITHUB_REPO}/releases/latest | cut -d '/' -f 8)
-export CLEAN_VERSION=${VERSION#*v}
-export DOCKER_REPO=lwolf/node-exporter
+export DOCKER_REPO=lwolf/cni-plugins
 
 docker manifest inspect ${DOCKER_REPO}:${VERSION} > /dev/null && echo "Version ${VERSION} is already exists" && exit 0
 
@@ -18,7 +17,7 @@ do
     elif [ "$ARCH_TYPE" == "arm" ]; then
         export TARGET=arm32v6
         export QEMU_ARCH=arm
-        export ARCH=armv6
+        export ARCH=arm
     elif [ "$ARCH_TYPE" == "arm64" ]; then
         export TARGET=arm64v8
         export QEMU_ARCH=aarch64
@@ -31,29 +30,30 @@ do
     # Get QEMU
     curl -sL -o qemu-${QEMU_ARCH}-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/${QEMU_VERSION}/qemu-${QEMU_ARCH}-static.tar.gz && tar zx -f qemu-${QEMU_ARCH}-static.tar.gz
 
-    wget -O- https://github.com/prometheus/node_exporter/releases/download/${VERSION}/node_exporter-${CLEAN_VERSION}.linux-${ARCH}.tar.gz | tar xvz
-    cp node_exporter-${CLEAN_VERSION}.linux-${ARCH}/node_exporter .
+    mkdir -p cni-plugins
+    wget -O- https://github.com/containernetworking/plugins/releases/download/${VERSION}/cni-plugins-${ARCH}-${VERSION}.tgz | tar xvz -C cni-plugins
 
     # Build image
-    docker build -t $DOCKER_REPO:${VERSION}-${ARCH}  --build-arg target=${TARGET} --build-arg qemu_arch=${QEMU_ARCH} .
+    docker build -t $DOCKER_REPO:${VERSION}-${ARCH} --build-arg target=${TARGET} --build-arg qemu_arch=${QEMU_ARCH} .
 
     # Push image
     docker push ${DOCKER_REPO}:${VERSION}-${ARCH}
 
-    rm -Rf {node_exporter} node_exporter-${CLEAN_VERSION}.linux-${ARCH}
+    rm -Rf cni-plugins
+
 done
 
 docker manifest create --amend \
     ${DOCKER_REPO}:${VERSION} \
     ${DOCKER_REPO}:${VERSION}-amd64 \
     ${DOCKER_REPO}:${VERSION}-arm64 \
-    ${DOCKER_REPO}:${VERSION}-armv6
+    ${DOCKER_REPO}:${VERSION}-arm
 
 docker manifest create --amend \
     ${DOCKER_REPO}:latest \
     ${DOCKER_REPO}:${VERSION}-amd64 \
     ${DOCKER_REPO}:${VERSION}-arm64 \
-    ${DOCKER_REPO}:${VERSION}-armv6
+    ${DOCKER_REPO}:${VERSION}-arm
 
 for OS_ARCH in linux_amd64 linux_arm64
 do
@@ -73,12 +73,12 @@ done
 
 docker manifest annotate \
     ${DOCKER_REPO}:${VERSION} \
-    ${DOCKER_REPO}:${VERSION}-armv6 \
+    ${DOCKER_REPO}:${VERSION}-arm \
     --os linux --arch arm --variant v6
 
 docker manifest annotate \
     ${DOCKER_REPO}:latest \
-    ${DOCKER_REPO}:${VERSION}-armv6 \
+    ${DOCKER_REPO}:${VERSION}-arm \
     --os linux --arch arm --variant v6
 
 docker manifest push ${DOCKER_REPO}:${VERSION}
