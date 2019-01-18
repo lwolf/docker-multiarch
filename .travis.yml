@@ -35,3 +35,5 @@ matrix:
       script: cd prometheus-snmp-exporter && bash ./build.sh
     - name: "tiller"
       script: cd tiller && bash ./build.sh
+    - name: "cni-plugins"
+      script: cd cni-plugins && bash ./build.sh

@@ -18,6 +18,8 @@ Current content
 | ------------- | ------------- |
 | flannel  | [lwolf/flannel](https://hub.docker.com/r/lwolf/flannel)  |
 | kubernetes-dashboard  | [lwolf/kubernetes-dashboard](https://hub.docker.com/r/lwolf/kubernetes-dashboard)  |
+| prometheus-server  | [lwolf/node-exporter](https://hub.docker.com/r/lwolf/prometheus)  |
 | prometheus-node-exporter  | [lwolf/node-exporter](https://hub.docker.com/r/lwolf/node-exporter)  |
 | prometheus-snmp-exporter  | [lwolf/snmp-exporter](https://hub.docker.com/r/lwolf/snmp-exporter)  |
 | tiller   | [lwolf/helm](https://hub.docker.com/r/lwolf/helm) |
+| cni-plugins  | [lwolf/helm](https://hub.docker.com/r/lwolf/cni-plugins) |
