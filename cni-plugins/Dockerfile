@@ -5,7 +5,7 @@ FROM $target/alpine:3.8
 ARG qemu_arch
 
 # Metadata
-LABEL org.label-schema.name="helm" \
+LABEL org.label-schema.name="cni-plugins" \
       org.label-schema.url="https://hub.docker.com/r/lwolf/cni-plugins" \
       org.label-schema.vcs-url="https://github.com/lwolf/docker-multiarch"
 
