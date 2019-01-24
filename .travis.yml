@@ -31,6 +31,8 @@ matrix:
       script: cd prometheus-server && bash ./build.sh
     - name: "prometheus-node-exporter"
       script: cd prometheus-node-exporter && bash ./build.sh
+    - name: "prometheus-blackbox-exporter"
+      script: cd prometheus-blackbox-exporter && bash ./build.sh
     - name: "prometheus-snmp-exporter"
       script: cd prometheus-snmp-exporter && bash ./build.sh
     - name: "prometheus-alertmanager"

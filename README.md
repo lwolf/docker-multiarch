@@ -21,6 +21,7 @@ Current content
 | kubernetes-dashboard  | [lwolf/kubernetes-dashboard](https://hub.docker.com/r/lwolf/kubernetes-dashboard)  |
 | prometheus-server  | [lwolf/node-exporter](https://hub.docker.com/r/lwolf/prometheus)  |
 | prometheus-node-exporter  | [lwolf/node-exporter](https://hub.docker.com/r/lwolf/node-exporter)  |
+| prometheus-blackbox-exporter  | [lwolf/blackbox-exporter](https://hub.docker.com/r/lwolf/blackbox-exporter)  |
 | prometheus-snmp-exporter  | [lwolf/snmp-exporter](https://hub.docker.com/r/lwolf/snmp-exporter)  |
 | prometheus-alertmanager  | [lwolf/alertmanager](https://hub.docker.com/r/lwolf/alertmanager)  |
 | prometheus-pushgateway  | [lwolf/pushgateway](https://hub.docker.com/r/lwolf/pushgateway)  |
