@@ -31,7 +31,7 @@ do
     # Get QEMU
     curl -sL -o qemu-${QEMU_ARCH}-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/${QEMU_VERSION}/qemu-${QEMU_ARCH}-static.tar.gz && tar zx -f qemu-${QEMU_ARCH}-static.tar.gz
 
-    wget -O- https://github.com/prometheus/blackbox_exporter/releases/download/${VERSION}/prometheus-${CLEAN_VERSION}.linux-${ARCH}.tar.gz | tar xvz
+    wget -O- https://github.com/prometheus/blackbox_exporter/releases/download/${VERSION}/blackbox_exporter-${CLEAN_VERSION}.linux-${ARCH}.tar.gz | tar xvz
     cp -R blackbox_exporter-${CLEAN_VERSION}.linux-${ARCH}/{blackbox_exporter,blackbox.yml} .
 
     # Build image
