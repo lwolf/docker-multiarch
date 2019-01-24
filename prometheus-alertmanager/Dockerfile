@@ -12,7 +12,7 @@ LABEL org.label-schema.name="alertmanager" \
 COPY qemu-$qemu_arch-static /usr/bin/
 COPY amtool                       /bin/amtool
 COPY alertmanager                 /bin/alertmanager
-COPY examples/ha/alertmanager.yml /etc/alertmanager/alertmanager.yml
+COPY alertmanager.yml /etc/alertmanager/alertmanager.yml
 
 RUN apk update \
     && apk add ca-certificates \
