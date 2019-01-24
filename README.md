@@ -22,5 +22,6 @@ Current content
 | prometheus-server  | [lwolf/node-exporter](https://hub.docker.com/r/lwolf/prometheus)  |
 | prometheus-node-exporter  | [lwolf/node-exporter](https://hub.docker.com/r/lwolf/node-exporter)  |
 | prometheus-snmp-exporter  | [lwolf/snmp-exporter](https://hub.docker.com/r/lwolf/snmp-exporter)  |
+| prometheus-alertmanager  | [lwolf/alertmanager](https://hub.docker.com/r/lwolf/alertmanager)  |
 | tiller   | [lwolf/helm](https://hub.docker.com/r/lwolf/helm) |
 | cni-plugins  | [lwolf/cni-plugins](https://hub.docker.com/r/lwolf/cni-plugins) |
