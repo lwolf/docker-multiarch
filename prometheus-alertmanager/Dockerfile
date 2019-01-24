@@ -16,7 +16,7 @@ COPY examples/ha/alertmanager.yml /etc/alertmanager/alertmanager.yml
 
 RUN apk update \
     && apk add ca-certificates \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /var/cache/apk/* \
     && mkdir -p /alertmanager \
     && chown -R nobody:nogroup etc/alertmanager /alertmanager \
     && rm -Rf /usr/bin/qemu-$qemu_arch-static
