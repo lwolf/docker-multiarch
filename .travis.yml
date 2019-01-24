@@ -33,6 +33,8 @@ matrix:
       script: cd prometheus-node-exporter && bash ./build.sh
     - name: "prometheus-snmp-exporter"
       script: cd prometheus-snmp-exporter && bash ./build.sh
+    - name: "prometheus-alertmanager"
+      script: cd prometheus-alertmanager && bash ./build.sh
     - name: "tiller"
       script: cd tiller && bash ./build.sh
     - name: "cni-plugins"
