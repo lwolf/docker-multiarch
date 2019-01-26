@@ -21,12 +21,6 @@ docker manifest create --amend \
     ${DOCKER_REPO}:${VERSION}-arm64 \
     ${DOCKER_REPO}:${VERSION}-arm
 
-docker manifest create --amend \
-    ${DOCKER_REPO}:latest \
-    ${DOCKER_REPO}:${VERSION}-amd64 \
-    ${DOCKER_REPO}:${VERSION}-arm64 \
-    ${DOCKER_REPO}:${VERSION}-arm
-
 for OS_ARCH in linux_amd64 linux_arm linux_arm64
 do
     OS=${OS_ARCH%%_*}
@@ -36,12 +30,6 @@ do
         ${DOCKER_REPO}:${VERSION} \
         ${DOCKER_REPO}:${VERSION}-${ARCH} \
         --os ${OS} --arch ${ARCH}
-
-    docker manifest annotate \
-        ${DOCKER_REPO}:latest \
-        ${DOCKER_REPO}:${VERSION}-${ARCH} \
-        --os ${OS} --arch ${ARCH}
 done
 
 docker manifest push ${DOCKER_REPO}:${VERSION}
-docker manifest push ${DOCKER_REPO}:latest
