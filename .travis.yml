@@ -25,6 +25,8 @@ matrix:
   include:
     - name: "flannel"
       script: cd flannel && bash ./build.sh
+    - name: "flannel-cni"
+      script: cd flannel-cni && bash ./build.sh      
     - name: "kubernetes-dashboard"
       script: cd kubernetes-dashboard && bash ./build.sh
     - name: "prometheus-server"
