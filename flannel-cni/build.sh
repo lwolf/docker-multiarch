@@ -32,7 +32,7 @@ do
     curl -sL -o qemu-${QEMU_ARCH}-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/${QEMU_VERSION}/qemu-${QEMU_ARCH}-static.tar.gz && tar zx -f qemu-${QEMU_ARCH}-static.tar.gz
 
     mkdir -p cni-plugins
-    wget -O- https://github.com/containernetworking/plugins/releases/download/${VERSION}/cni-plugins-${ARCH}-${VERSION}.tgz | tar xvz -C cni-plugins
+    wget -O- https://github.com/containernetworking/plugins/releases/download/${VERSION}/cni-plugins-linux-${ARCH}-${VERSION}.tgz | tar xvz -C cni-plugins
 
     # Build image
     docker build -t $DOCKER_REPO:${VERSION}-${ARCH} --build-arg target=${TARGET} --build-arg qemu_arch=${QEMU_ARCH} .
