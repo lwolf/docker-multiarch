@@ -18,7 +18,7 @@ do
     elif [ "$ARCH_TYPE" == "arm" ]; then
         export TARGET=arm32v6
         export QEMU_ARCH=arm
-        export ARCH=armv6
+        export ARCH=arm
     elif [ "$ARCH_TYPE" == "arm64" ]; then
         export TARGET=arm64v8
         export QEMU_ARCH=aarch64
@@ -32,6 +32,7 @@ do
     curl -sL -o qemu-${QEMU_ARCH}-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/${QEMU_VERSION}/qemu-${QEMU_ARCH}-static.tar.gz && tar zx -f qemu-${QEMU_ARCH}-static.tar.gz
 
     wget -O- https://github.com/poseidon/matchbox/releases/download/${VERSION}/matchbox-${VERSION}-linux-${ARCH}.tar.gz | tar xvz
+    https://github.com/poseidon/matchbox/releases/download/v0.8.0/matchbox-v0.8.0-linux-armv6.tar.gz
 
     cp matchbox-${VERSION}-linux-${ARCH}/matchbox .
 
