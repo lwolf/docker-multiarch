@@ -33,11 +33,7 @@ do
 
     wget -O- https://github.com/poseidon/matchbox/releases/download/${VERSION}/matchbox-${VERSION}-linux-${ARCH}.tar.gz | tar xvz
 
-    if [ "$ARCH_TYPE" == "amd64" ];then
-      cp matchbox-${VERSION}.linux/matchbox .
-    else
-      cp matchbox-${VERSION}.linux-${ARCH}/matchbox .
-    fi
+    cp matchbox-${VERSION}-linux-${ARCH}/matchbox .
 
     # Build image
     docker build -t $DOCKER_REPO:${VERSION}-${ARCH}  --build-arg target=${TARGET} --build-arg qemu_arch=${QEMU_ARCH} .
