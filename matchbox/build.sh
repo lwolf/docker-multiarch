@@ -16,11 +16,11 @@ do
         export QEMU_ARCH=x86_64
         export ARCH=amd64
     elif [ "$ARCH_TYPE" == "arm" ]; then
-        export TARGET=arm
+        export TARGET=arm32v6
         export QEMU_ARCH=arm
-        export ARCH=armv6
+        export ARCH=arm
     elif [ "$ARCH_TYPE" == "arm64" ]; then
-        export TARGET=arm64
+        export TARGET=arm64v8
         export QEMU_ARCH=aarch64
         export ARCH=arm64
     else
