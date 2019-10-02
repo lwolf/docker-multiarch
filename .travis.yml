@@ -45,3 +45,5 @@ matrix:
       script: cd tiller && bash ./build.sh
     - name: "cni-plugins"
       script: cd cni-plugins && bash ./build.sh
+    - name: "matchbox"
+      script: cd matchbox && bash ./build.sh
