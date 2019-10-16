@@ -27,8 +27,6 @@ matrix:
       script: cd flannel && bash ./build.sh
     - name: "flannel-cni"
       script: cd flannel-cni && bash ./build.sh      
-    - name: "kubernetes-dashboard"
-      script: cd kubernetes-dashboard && bash ./build.sh
     - name: "prometheus-server"
       script: cd prometheus-server && bash ./build.sh
     - name: "prometheus-node-exporter"

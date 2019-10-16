@@ -18,7 +18,7 @@ Current content
 | ------------- | ------------- |
 | flannel  | [lwolf/flannel](https://hub.docker.com/r/lwolf/flannel)  |
 | flannel-cni  | [lwolf/flannel-cni](https://hub.docker.com/r/lwolf/flannel-cni)  |
-| kubernetes-dashboard  | [lwolf/kubernetes-dashboard](https://hub.docker.com/r/lwolf/kubernetes-dashboard)  |
+| kubernetes-dashboard  | [lwolf/kubernetes-dashboard](https://hub.docker.com/r/lwolf/kubernetes-dashboard)  | depricated, [official image](https://hub.docker.com/r/kubernetesui/dashboard/) is now multiarch
 | prometheus-server  | [lwolf/node-exporter](https://hub.docker.com/r/lwolf/prometheus)  |
 | prometheus-node-exporter  | [lwolf/node-exporter](https://hub.docker.com/r/lwolf/node-exporter)  |
 | prometheus-blackbox-exporter  | [lwolf/blackbox-exporter](https://hub.docker.com/r/lwolf/blackbox-exporter)  |
