@@ -14,8 +14,8 @@ Images are built compliant with v2.2 of the Docker manifest API. No need to spec
 Current content
 --
 
-| Name  | Image |
-| ------------- | ------------- |
+| Name  | Image | Notes |
+| ------------- | ------------- | ------- |
 | flannel  | [lwolf/flannel](https://hub.docker.com/r/lwolf/flannel)  |
 | flannel-cni  | [lwolf/flannel-cni](https://hub.docker.com/r/lwolf/flannel-cni)  |
 | kubernetes-dashboard  | [lwolf/kubernetes-dashboard](https://hub.docker.com/r/lwolf/kubernetes-dashboard)  | depricated, [official image](https://hub.docker.com/r/kubernetesui/dashboard/) is now multiarch
