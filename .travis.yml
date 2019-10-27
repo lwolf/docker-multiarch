@@ -45,3 +45,5 @@ matrix:
       script: cd cni-plugins && bash ./build.sh
     - name: "matchbox"
       script: cd matchbox && bash ./build.sh
+    - name: "heketi"
+      script: cd heketi && bash ./build.sh

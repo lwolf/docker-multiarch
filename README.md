@@ -28,3 +28,4 @@ Current content
 | tiller   | [lwolf/helm](https://hub.docker.com/r/lwolf/helm) |
 | cni-plugins  | [lwolf/cni-plugins](https://hub.docker.com/r/lwolf/cni-plugins) |
 | matchbox| [lwolf/matchbox](https://hub.docker.com/r/lwolf/matchbox) |
+| heketi| [lwolf/heketi](https://hub.docker.com/r/lwolf/heketi) |
