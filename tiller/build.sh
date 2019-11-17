@@ -6,6 +6,8 @@ export GITHUB_REPO=helm/helm
 export VERSION=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/${GITHUB_REPO}/releases/latest | cut -d '/' -f 8)
 export DOCKER_REPO=lwolf/helm
 
+echo ${VERSION} | grep "v3" && echo "helm3 version found -  ${VERSION}, skipping" && exit 0
+
 docker manifest inspect ${DOCKER_REPO}:${VERSION} > /dev/null && echo "Version ${VERSION} is already exists" && exit 0
 
 for ARCH_TYPE in amd64 arm64 arm
@@ -30,7 +32,7 @@ do
     # Get QEMU
     curl -sL -o qemu-${QEMU_ARCH}-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/${QEMU_VERSION}/qemu-${QEMU_ARCH}-static.tar.gz && tar zx -f qemu-${QEMU_ARCH}-static.tar.gz
 
-    wget -O- https://storage.googleapis.com/kubernetes-helm/helm-${VERSION}-linux-${ARCH}.tar.gz | tar xvz
+    wget -O- https://get.helm.sh/helm-${VERSION}-linux-${ARCH}.tar.gz | tar xvz
     cp linux-${ARCH}/{tiller,helm} .
 
     # Build image
