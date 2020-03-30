@@ -1,6 +1,6 @@
-ARG target=ubuntu:20.04
+ARG target
 
-FROM $target
+FROM $target/ubuntu:20.04
 
 ARG qemu_arch
 

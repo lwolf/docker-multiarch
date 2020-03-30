@@ -11,12 +11,15 @@ docker manifest inspect ${DOCKER_REPO}:${VERSION} > /dev/null && echo "Version $
 for ARCH_TYPE in amd64 arm64 arm
 do
     if [ "$ARCH_TYPE" == "amd64" ];then
+        export TARGET=amd64
         export QEMU_ARCH=x86_64
         export ARCH=amd64
     elif [ "$ARCH_TYPE" == "arm" ]; then
+        export TARGET=arm32v6
         export QEMU_ARCH=arm
         export ARCH=arm
     elif [ "$ARCH_TYPE" == "arm64" ]; then
+        export TARGET=arm64v8
         export QEMU_ARCH=aarch64
         export ARCH=arm64
     else
@@ -28,7 +31,7 @@ do
     curl -sL -o qemu-${QEMU_ARCH}-static.tar.gz https://github.com/multiarch/qemu-user-static/releases/download/${QEMU_VERSION}/qemu-${QEMU_ARCH}-static.tar.gz && tar zx -f qemu-${QEMU_ARCH}-static.tar.gz
 
     # Build image
-    docker build -t $DOCKER_REPO:${VERSION}-${ARCH} --build-arg --build-arg qemu_arch=${QEMU_ARCH} .
+    docker build -t $DOCKER_REPO:${VERSION}-${ARCH} --build-arg target=${TARGET} --build-arg qemu_arch=${QEMU_ARCH} .
 
     # Push image
     docker push ${DOCKER_REPO}:${VERSION}-${ARCH}
