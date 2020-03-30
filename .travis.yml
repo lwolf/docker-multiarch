@@ -26,7 +26,7 @@ matrix:
     - name: "flannel"
       script: cd flannel && bash ./build.sh
     - name: "flannel-cni"
-      script: cd flannel-cni && bash ./build.sh      
+      script: cd flannel-cni && bash ./build.sh
     - name: "prometheus-server"
       script: cd prometheus-server && bash ./build.sh
     - name: "prometheus-node-exporter"
@@ -47,3 +47,5 @@ matrix:
       script: cd matchbox && bash ./build.sh
     - name: "heketi"
       script: cd heketi && bash ./build.sh
+    - name: "glusterfs"
+      script: cd glusterfs && bash ./build.sh
