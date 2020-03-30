@@ -3,7 +3,7 @@
 set -euo pipefail
 
 export QEMU_VERSION=v3.1.0-2
-export VERSION=$(curl -Ls -o /dev/null -w %{url_effective} https://launchpad.net/~gluster/+archive/ubuntu/glusterfs-7 | grep "ubuntu1~focal1" | grep -oE '[0-9].[0-9]')
+export VERSION=$(curl -Ls -w %{url_effective} https://launchpad.net/~gluster/+archive/ubuntu/glusterfs-7 | grep "ubuntu1~focal1" | grep -oE '[0-9].[0-9]')
 export DOCKER_REPO=lwolf/glusterfs
 
 docker manifest inspect ${DOCKER_REPO}:${VERSION} > /dev/null && echo "Version ${VERSION} is already exists" && exit 0
