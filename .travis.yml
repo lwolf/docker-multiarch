@@ -23,27 +23,29 @@ before_install:
 
 matrix:
   include:
-    - name: "flannel"
-      script: cd flannel && bash ./build.sh
-    - name: "flannel-cni"
-      script: cd flannel-cni && bash ./build.sh      
-    - name: "prometheus-server"
-      script: cd prometheus-server && bash ./build.sh
-    - name: "prometheus-node-exporter"
-      script: cd prometheus-node-exporter && bash ./build.sh
-    - name: "prometheus-blackbox-exporter"
-      script: cd prometheus-blackbox-exporter && bash ./build.sh
-    - name: "prometheus-snmp-exporter"
-      script: cd prometheus-snmp-exporter && bash ./build.sh
-    - name: "prometheus-alertmanager"
-      script: cd prometheus-alertmanager && bash ./build.sh
-    - name: "prometheus-pushgateway"
-      script: cd prometheus-pushgateway && bash ./build.sh
-    - name: "tiller"
-      script: cd tiller && bash ./build.sh
-    - name: "cni-plugins"
-      script: cd cni-plugins && bash ./build.sh
-    - name: "matchbox"
-      script: cd matchbox && bash ./build.sh
-    - name: "heketi"
-      script: cd heketi && bash ./build.sh
+#    - name: "flannel"
+#      script: cd flannel && bash ./build.sh
+#    - name: "flannel-cni"
+#      script: cd flannel-cni && bash ./build.sh
+#    - name: "prometheus-server"
+#      script: cd prometheus-server && bash ./build.sh
+#    - name: "prometheus-node-exporter"
+#      script: cd prometheus-node-exporter && bash ./build.sh
+#    - name: "prometheus-blackbox-exporter"
+#      script: cd prometheus-blackbox-exporter && bash ./build.sh
+#    - name: "prometheus-snmp-exporter"
+#      script: cd prometheus-snmp-exporter && bash ./build.sh
+#    - name: "prometheus-alertmanager"
+#      script: cd prometheus-alertmanager && bash ./build.sh
+#    - name: "prometheus-pushgateway"
+#      script: cd prometheus-pushgateway && bash ./build.sh
+#    - name: "tiller"
+#      script: cd tiller && bash ./build.sh
+#    - name: "cni-plugins"
+#      script: cd cni-plugins && bash ./build.sh
+#    - name: "matchbox"
+#      script: cd matchbox && bash ./build.sh
+#    - name: "heketi"
+#      script: cd heketi && bash ./build.sh
+    - name: "glusterfs"
+      script: cd glusterfs && bash ./build.sh
