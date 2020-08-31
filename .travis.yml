@@ -47,5 +47,3 @@ matrix:
       script: cd matchbox && bash ./build.sh
     - name: "heketi"
       script: cd heketi && bash ./build.sh
-    - name: "glusterfs"
-      script: cd glusterfs && bash ./build.sh
